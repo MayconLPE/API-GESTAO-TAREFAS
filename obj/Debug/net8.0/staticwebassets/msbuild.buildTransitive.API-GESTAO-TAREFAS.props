@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\API-GESTAO-TAREFAS.props" />
+</Project>
