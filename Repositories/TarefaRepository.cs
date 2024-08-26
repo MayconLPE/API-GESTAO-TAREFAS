@@ -1,12 +1,28 @@
+using System.Data.SqlClient;
 using API_GESTAO_TAREFAS.Models;
+using Dapper;
 
 namespace API_GESTAO_TAREFAS.Repositories;
 
 public class TarefaRepository : ITarefaRepository
 {
-    public Task<IEnumerable<TarefaResponse>> ExibirTodasTarefas()
+    private readonly IConfiguration _configuration;
+    private readonly string connectionString;
+
+    public TarefaRepository(IConfiguration configuration)
     {
-        throw new NotImplementedException();
+        _configuration = configuration;
+        connectionString = _configuration.GetConnectionString("SqlConnection");
+    }
+    
+    public async Task<IEnumerable<TarefaResponse>> ExibirTodasTarefas()
+    {
+        string sql = @"EXEC consultarTodasTarefas";
+        using (var con = new SqlConnection(connectionString))
+        {
+            return await con.QueryAsync<TarefaResponse>(sql);
+        }
+
     }
     public Task<IEnumerable<TarefaResponse>> BuscarTarefaId()
     {

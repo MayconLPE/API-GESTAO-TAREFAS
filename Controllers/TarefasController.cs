@@ -1,4 +1,5 @@
 
+using API_GESTAO_TAREFAS.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_GESTAO_TAREFAS.Controllers;
@@ -7,11 +8,24 @@ namespace API_GESTAO_TAREFAS.Controllers;
 [Route("api/[controller]")]
 public class TarefasController : ControllerBase
 {
+    private readonly ITarefaRepository _repository;
+    public TarefasController(ITarefaRepository repository)
+    {
+        _repository = repository;
+    }
 
     [HttpGet]
-    public IActionResult ExibirUmaMensagem()
+    public async Task<IActionResult> ExibirTodasTarefas()
     {
-        return Ok("Olá, a API esta funcionando");
+        var tarefas = await _repository.ExibirTodasTarefas();
+
+        return tarefas.Any() ? Ok(tarefas) : NoContent();
     }
+
+    // [HttpGet]
+    // public IActionResult ExibirUmaMensagem()
+    // {
+    //     return Ok("Olá, a API esta funcionando");
+    // }
 
 }

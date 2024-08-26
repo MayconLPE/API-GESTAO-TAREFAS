@@ -32,3 +32,10 @@ c:\Users\windows\Desktop\API-GESTAO-TAREFAS\obj\Debug\net8.0\refint\API-GESTAO-T
 c:\Users\windows\Desktop\API-GESTAO-TAREFAS\obj\Debug\net8.0\API-GESTAO-TAREFAS.pdb
 C:\Users\windows\Desktop\API-GESTAO-TAREFAS\obj\Debug\net8.0\API-GESTAO-TAREFAS.genruntimeconfig.cache
 C:\Users\windows\Desktop\API-GESTAO-TAREFAS\obj\Debug\net8.0\ref\API-GESTAO-TAREFAS.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\Dapper.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\System.Data.SqlClient.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+c:\Users\windows\Desktop\API-GESTAO-TAREFAS\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
