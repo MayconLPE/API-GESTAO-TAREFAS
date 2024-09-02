@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("API-GESTAO-TAREFAS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+232d1acc313e233adf605481cd71db8d7f017cf5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45fb1f20ae5e8ecc5160c3cbad4395629e5407b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("API-GESTAO-TAREFAS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("API-GESTAO-TAREFAS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
