@@ -30,21 +30,37 @@ public class UsuarioRepository : IUsuarioRepository
                         FROM tb_usuario 
                         WHERE id = @Id;";
         using var con = new SqlConnection(connectionString);
-        return await con.QueryFirstOrDefaultAsync<UsuarioModel>(sql, new { Id = idUsuario});
+        return await con.QueryFirstOrDefaultAsync<UsuarioModel>(sql, new { Id = idUsuario });
     }
 
-    public Task<bool> AdicionarUser(UsuarioModel request)
+    public async Task<bool> AdicionarUser(UsuarioModel request)
     {
-        throw new NotImplementedException();
+        string sql = @"INSERT INTO tb_usuario (Nome)
+                       VALUES (@Nome);";
+        using var con = new SqlConnection(connectionString);
+        return await con.ExecuteAsync(sql, request) > 0;
+
     }
 
-    public Task<bool> AtualizarUser(UsuarioModel request, int id)
+    public async Task<bool> AtualizarUser(UsuarioModel request, int idUsuario)
     {
-        throw new NotImplementedException();
+         string sql = @"UPDATE tb_usuario SET
+	                        nome = @Nome
+                        WHERE IdUsuario = @IdUsuario;";
+        var parametros = new DynamicParameters();
+        parametros.Add("Nome", request.Nome);
+        parametros.Add("IdUsuario", request.IdUsuario);
+
+        using var con = new SqlConnection(connectionString);
+        return await con.ExecuteAsync(sql, parametros) > 0;
     }
 
-    public Task<bool> DeletarUser(int id)
+    public async Task<bool> DeletarUser(int idUsuario)
     {
-        throw new NotImplementedException();
+        string sql = @"DELETE FROM tb_usuario
+                        WHERE IdUsuario = @IdUsuario;";
+
+        using var con = new SqlConnection(connectionString);
+        return await con.ExecuteAsync(sql, new { IdUsuario = idUsuario}) > 0;
     }
 }
