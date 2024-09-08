@@ -9,7 +9,7 @@ public class TarefaModel
     public string? TituloTarefa { get; set; }
     public string? Descricao { get; set; }
     public string? Categoria { get; set; }
-    public StatusTarefa Status { get; set; }
+    public String? Status { get; set; }
     public DateTime DataCriacao { get; set; }
     public DateTime DataConclusao { get; set; }
 

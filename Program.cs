@@ -9,8 +9,9 @@ builder.Services.AddSwaggerGen();
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
-//builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
+
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 
 var app = builder.Build();
 
