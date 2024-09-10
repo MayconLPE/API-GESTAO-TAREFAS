@@ -9,5 +9,4 @@ public interface ITarefaRepository
     Task<bool> AdicionarTarefa(TarefaModel request);
     Task<bool> AtualizarTarefa(TarefaModel request, int idTarefa);
     Task<bool> DeletarTarefa(int idTarefa);
-
 }

@@ -41,8 +41,26 @@ namespace API_GESTAO_TAREFAS.Controllers
             var adicionado = await _repository.AdicionarTarefa(tarefaModel);
 
             return adicionado
-            ? Ok("Usuario Cadastrado com sucesso")
-            : BadRequest("Erro: Usuario não adicionado");
+            ? Ok("Tarefa Cadastrada com sucesso")
+            : BadRequest("Erro: Tarefa não adicionado");
+
+        }
+
+        [HttpPut("idTarefa")]
+        public async Task<IActionResult> AtualizarTarefa(TarefaModel request, int idTarefa)
+        {
+            if(idTarefa <= 0) return BadRequest("Tarefa Inválida");
+
+            var tarefa = await _repository.BuscarTarefaId(idTarefa);
+
+            if(tarefa == null) NotFound("Tarefa ainda não criada");
+
+            if(string.IsNullOrEmpty(request.TituloTarefa)) request.TituloTarefa = tarefa.TituloTarefa;
+
+            var atualizado = await _repository.AtualizarTarefa(request, idTarefa);
+            return atualizado
+            ? Ok("Tarefa Cadastrada com sucesso")
+            : BadRequest("Erro: Tarefa não adicionada");
 
         }
 

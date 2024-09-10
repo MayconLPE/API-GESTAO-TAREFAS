@@ -40,13 +40,31 @@ public class TarefaRepository : ITarefaRepository
         return await con.ExecuteAsync(sql, request) > 0;
     }
 
-    public Task<bool> AtualizarTarefa(TarefaModel request, int idTarefa)
+    public async Task<bool> AtualizarTarefa(TarefaModel request, int idTarefa)
     {
-        throw new NotImplementedException();
+        string sql = @"UPDATE tb_tarefa SET
+                        TituloTarefa = @TituloTarefa,
+                        Descricao = @Descricao,
+                        Categoria = @Categoria,
+                        Status = @Status, 
+                        IdUsuario = @IdUsuario
+                       WHERE IdTarefa = @IdTarefa";
+
+        var parametros = new DynamicParameters();
+        parametros.Add("TituloTarefa", request.TituloTarefa);
+        parametros.Add("Descricao", request.Descricao);
+        parametros.Add("Categoria", request.Categoria);
+        parametros.Add("Status", request.Status);
+        parametros.Add("IdUsuario", request.IdUsuario);
+        parametros.Add("IdTarefa", request.IdTarefa);
+
+        using var con = new SqlConnection(connectionString);
+        return await con.ExecuteAsync(sql, parametros) > 0;
     }
 
     public Task<bool> DeletarTarefa(int idTarefa)
     {
         throw new NotImplementedException();
     }
+
 }
