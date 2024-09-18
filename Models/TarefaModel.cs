@@ -6,10 +6,10 @@ public class TarefaModel
 {
     public int IdTarefa { get; set; }
     public int IdUsuario { get; set; }
-    public string? TituloTarefa { get; set; }
-    public string? Descricao { get; set; }
-    public string? Categoria { get; set; }
-    public String? Status { get; set; }
+    public string TituloTarefa { get; set; }
+    public string Descricao { get; set; }
+    public string Categoria { get; set; }
+    public string Status { get; set; }
     public DateTime DataCriacao { get; set; }
     public DateTime DataConclusao { get; set; }
 

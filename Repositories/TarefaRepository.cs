@@ -35,7 +35,7 @@ public class TarefaRepository : ITarefaRepository
         string sql = @"INSERT INTO tb_tarefa (TituloTarefa, Descricao, 
                        Categoria , Status, IdUsuario)
                        VALUES (@TituloTarefa, @Descricao, 
-                       @Categoria, @Status, @IdUsuario );";
+                       @Categoria, @Status);";
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, request) > 0;
     }
