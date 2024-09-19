@@ -18,17 +18,15 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<IEnumerable<UsuarioModel>> BuscarTodosUsuarios()
     {
-        string sql = @"SELECT * FROM tb_usuario;";
-        using var con = new SqlConnection(connectionString);
-        return await con.QueryAsync<UsuarioModel>(sql);
+         string sql = @"EXEC SelecionarUsuarios";
+         using var con = new SqlConnection(connectionString);
+         return await con.QueryAsync<UsuarioModel>(sql);
 
     }
 
     public async Task<UsuarioModel> BuscarUserId(int idUsuario)
     {
-        string sql = @"SELECT id, nome
-                        FROM tb_usuario 
-                        WHERE id = @Id;";
+        string sql = @"EXEC SelecionarUsuarioPorId @UsuarioId = @Id";
         using var con = new SqlConnection(connectionString);
         return await con.QueryFirstOrDefaultAsync<UsuarioModel>(sql, new { Id = idUsuario });
     }
@@ -39,7 +37,6 @@ public class UsuarioRepository : IUsuarioRepository
                        VALUES (@Nome);";
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, request) > 0;
-
     }
 
     public async Task<bool> AtualizarUser(UsuarioModel request, int idUsuario)

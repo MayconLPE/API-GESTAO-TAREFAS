@@ -1,5 +1,6 @@
 using API_GESTAO_TAREFAS.Models;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
+using API_GESTAO_TAREFAS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,24 +10,24 @@ namespace API_GESTAO_TAREFAS.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioRepository _repository;
+        private readonly IUsuarioService _service;
 
-        public UsuarioController(IUsuarioRepository repository)
+        public UsuarioController(IUsuarioService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("BuscarTodosUsuarios")]
         public async Task<IActionResult> BuscarTodosUsuarios()
         {
-            var usuarios = await _repository.BuscarTodosUsuarios();
+            var usuarios = await _service.BuscarTodosUsuarios();
             return usuarios.Any() ? Ok(usuarios) : NoContent();
         }
 
-        [HttpGet("id")]
+        [HttpGet("BuscarUsuarioId")]
         public async Task<IActionResult> BuscarUsuarioId(int id)
         {
-            var usuario = await _repository.BuscarUserId(id);
+            var usuario = await _service.BuscarUserId(id);
             return usuario != null
                             ? Ok(usuario)
                             : NotFound("Usuario não encontrado");
@@ -40,7 +41,7 @@ namespace API_GESTAO_TAREFAS.Controllers
                 return BadRequest("Informações inválidas");
             }
 
-            var adicionado = await _repository.AdicionarUser(usuarioModel);
+            var adicionado = await _service.AdicionarUser(usuarioModel);
 
             return adicionado
             ? Ok("Usuario Cadastrado com sucesso")
@@ -52,11 +53,11 @@ namespace API_GESTAO_TAREFAS.Controllers
         public async Task<IActionResult> AtualizarUsuario(UsuarioModel request, int idUsuario)
         {
             if (idUsuario <= 0) return BadRequest("Usuario inválido");
-            var usuario = await _repository.BuscarUserId(idUsuario);
+            var usuario = await _service.BuscarUserId(idUsuario);
 
             if (string.IsNullOrEmpty(request.Nome)) request.Nome = usuario.Nome;
 
-            var atualizado = await _repository.AtualizarUser(request, idUsuario);
+            var atualizado = await _service.AtualizarUser(request, idUsuario);
 
             return atualizado
                         ? Ok("Usuario atualizado com sucesso")
@@ -67,11 +68,11 @@ namespace API_GESTAO_TAREFAS.Controllers
         public async Task<IActionResult> DeletarUsuario(int idUsuario)
         {
             if (idUsuario <= 0) return BadRequest("Usuario inválido");
-            var usuario = await _repository.BuscarUserId(idUsuario);
+            var usuario = await _service.BuscarUserId(idUsuario);
 
             if (usuario == null) NotFound("Usuario não existe");
 
-            var deletado = await _repository.DeletarUser(idUsuario);
+            var deletado = await _service.DeletarUser(idUsuario);
             return deletado
                         ? Ok("Usuario deletado com sucesso")
                         : BadRequest("Erro: Usuario não deletado");

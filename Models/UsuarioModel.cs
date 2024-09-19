@@ -4,5 +4,4 @@ namespace API_GESTAO_TAREFAS.Models;
     {
         public int IdUsuario { get; set; }
         public string Nome { get; set; }
-        public int IdTarefa { get; set; }
     }
