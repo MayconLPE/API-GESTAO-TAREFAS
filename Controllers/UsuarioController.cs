@@ -33,7 +33,7 @@ namespace API_GESTAO_TAREFAS.Controllers
                             : NotFound("Usuario não encontrado");
         }
 
-        [HttpPost]
+        [HttpPost("CadastrarUsuario")]
         public async Task<IActionResult> CadastrarUsuario(UsuarioModel usuarioModel)
         {
             if (string.IsNullOrEmpty(usuarioModel.Nome))
@@ -49,10 +49,11 @@ namespace API_GESTAO_TAREFAS.Controllers
 
         }
 
-        [HttpPut("idUsuario")]
+        [HttpPut("AtualizarUsuario")]
         public async Task<IActionResult> AtualizarUsuario(UsuarioModel request, int idUsuario)
         {
             if (idUsuario <= 0) return BadRequest("Usuario inválido");
+            
             var usuario = await _service.BuscarUserId(idUsuario);
 
             if (string.IsNullOrEmpty(request.Nome)) request.Nome = usuario.Nome;
@@ -64,7 +65,7 @@ namespace API_GESTAO_TAREFAS.Controllers
                         : BadRequest("Erro: Usuario não atualizado");
         }
 
-        [HttpDelete("idUsuario")]
+        [HttpDelete("DeletarUsuiario")]
         public async Task<IActionResult> DeletarUsuario(int idUsuario)
         {
             if (idUsuario <= 0) return BadRequest("Usuario inválido");

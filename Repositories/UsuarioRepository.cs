@@ -33,21 +33,20 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<bool> AdicionarUser(UsuarioModel request)
     {
-        string sql = @"INSERT INTO tb_usuario (Nome)
-                       VALUES (@Nome);";
+        string sql = @"EXEC InserirUsuario @Nome";
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, request) > 0;
     }
 
     public async Task<bool> AtualizarUser(UsuarioModel request, int idUsuario)
     {
-         string sql = @"UPDATE tb_usuario SET
+        string sql = @"UPDATE tb_usuario SET
 	                        nome = @Nome
                         WHERE IdUsuario = @IdUsuario;";
         var parametros = new DynamicParameters();
-        parametros.Add("Nome", request.Nome);
         parametros.Add("IdUsuario", request.IdUsuario);
-
+        parametros.Add("Nome", request.Nome);
+        
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, parametros) > 0;
     }
