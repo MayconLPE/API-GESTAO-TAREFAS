@@ -22,7 +22,7 @@ public class TarefaService : ITarefaService
     }
     public async Task<bool> AdicionarTarefa(TarefaModel request)
     {
-        throw new NotImplementedException();
+        return await _repository.AdicionarTarefa(request);
     }
 
     public async Task<bool> AtualizarTarefa(TarefaModel request, int idTarefa)
