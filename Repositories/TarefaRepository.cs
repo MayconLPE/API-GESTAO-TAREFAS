@@ -33,7 +33,7 @@ public class TarefaRepository : ITarefaRepository
     public async Task<bool> AdicionarTarefa(TarefaModel request)
     {
         string sql = @"INSERT INTO tb_tarefa (TituloTarefa, Descricao, 
-                       Categoria , Status, IdUsuario)
+                       Categoria , Status)
                        VALUES (@TituloTarefa, @Descricao, 
                        @Categoria, @Status);";
         using var con = new SqlConnection(connectionString);

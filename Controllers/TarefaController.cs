@@ -1,5 +1,6 @@
 using API_GESTAO_TAREFAS.Models;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
+using API_GESTAO_TAREFAS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -9,28 +10,28 @@ namespace API_GESTAO_TAREFAS.Controllers
     [ApiController]
     public class TarefaController : ControllerBase
     {
-        private readonly ITarefaRepository _repository;
-        public TarefaController(ITarefaRepository repository)
+        private readonly ITarefaService _service;
+        public TarefaController(ITarefaService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("BuscarTodasTarefas")]
         public async Task<IActionResult> BuscarTodasTarefas()
         {
-            var tarefa = await _repository.BuscarTodasTarefas();
+            var tarefa = await _service.BuscarTodasTarefas();
             return tarefa.Any() ? Ok(tarefa) : NoContent();
         }
-        [HttpGet("idTarefa")]
+        [HttpGet("BuscarTarefaId")]
         public async Task<IActionResult> BuscarTarefaId(int idTarefa)
         {
-            var tarefa = await _repository.BuscarTarefaId(idTarefa);
+            var tarefa = await _service.BuscarTarefaId(idTarefa);
             return tarefa != null
                             ? Ok(tarefa)
                             : NotFound("Usuario não encontrado");
         }
 
-        [HttpPost]
+        [HttpPost("CadastrarTarefa")]
         public async Task<IActionResult> CadastrarTarefa(TarefaModel tarefaModel)
         {
             if (string.IsNullOrEmpty(tarefaModel.TituloTarefa))
@@ -38,7 +39,7 @@ namespace API_GESTAO_TAREFAS.Controllers
                 return BadRequest("Informações inválidas");
             }
 
-            var adicionado = await _repository.AdicionarTarefa(tarefaModel);
+            var adicionado = await _service.AdicionarTarefa(tarefaModel);
 
             return adicionado
             ? Ok("Usuario Cadastrado com sucesso")

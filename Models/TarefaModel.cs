@@ -5,7 +5,6 @@ namespace API_GESTAO_TAREFAS.Models;
 public class TarefaModel
 {
     public int IdTarefa { get; set; }
-    public int IdUsuario { get; set; }
     public string TituloTarefa { get; set; }
     public string Descricao { get; set; }
     public string Categoria { get; set; } // model categoria
