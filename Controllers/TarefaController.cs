@@ -47,6 +47,36 @@ namespace API_GESTAO_TAREFAS.Controllers
 
         }
 
+        [HttpPut("AtualizarTarefa")]
+        public async Task<IActionResult> AtualizarTarefa(TarefaModel request, int idTarefa)
+        {
+            if (idTarefa <= 0) return BadRequest("Tarefa invalida");
+            var tarefa = await _service.BuscarTarefaId(idTarefa);
+
+            if (tarefa == null) return NotFound("Tarefa não existe");
+
+            var atualizar = await _service.AtualizarTarefa(request, idTarefa);
+
+            return atualizar
+                ? Ok("Tarefa atualizada")
+                : BadRequest("Erro ao atualizar");
+        }
+
+        [HttpDelete("DeletarTarefa")]
+        public async Task<IActionResult> DeletarTarefa(int idTarefa)
+        {
+            if (idTarefa <= 0) return BadRequest("Tarefa invalida");
+            var tarefa = await _service.BuscarTarefaId(idTarefa);
+
+            if (tarefa == null) return NotFound("Tarefa não existe");
+
+            var deletar = await _service.DeletarTarefa(idTarefa);
+
+            return deletar
+                ? Ok("Tarefa deletada")
+                : BadRequest("Erro ao deletar");
+
+        }
     }
 
 }

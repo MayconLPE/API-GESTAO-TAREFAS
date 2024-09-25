@@ -27,10 +27,10 @@ public class TarefaService : ITarefaService
 
     public async Task<bool> AtualizarTarefa(TarefaModel request, int idTarefa)
     {
-        throw new NotImplementedException();
+        return await _repository.AtualizarTarefa(request, idTarefa);
     }
     public async Task<bool> DeletarTarefa(int idTarefa)
     {
-        throw new NotImplementedException();
+        return await _repository.DeletarTarefa(idTarefa);
     }
 }
