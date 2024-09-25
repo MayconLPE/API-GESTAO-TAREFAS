@@ -46,14 +46,14 @@ public class TarefaRepository : ITarefaRepository
                         Descricao = @Descricao,
                         Categoria = @Categoria,
                         Status = @Status
-                        WHERE IdTarefa = @IdTarefa";
+                        WHERE idTarefa = @IdTarefa";
 
         var parametros = new DynamicParameters();
         parametros.Add("TituloTarefa", request.TituloTarefa);
-        parametros.Add("Descricao", request.Descricao); 
-        parametros.Add("Categoria", request.Categoria); 
+        parametros.Add("Descricao", request.Descricao);
+        parametros.Add("Categoria", request.Categoria);
         parametros.Add("Status", request.Status);
-        parametros.Add("IdTarefa", request.IdTarefa);    
+        parametros.Add("IdTarefa", request.IdTarefa);
 
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, parametros) > 0;
@@ -61,10 +61,10 @@ public class TarefaRepository : ITarefaRepository
 
     public async Task<bool> DeletarTarefa(int idTarefa)
     {
-                string sql = @"DELETE FROM tb_tarefa
+        string sql = @"DELETE FROM tb_tarefa
                                 WHERE idTarefa = @IdTarefa";
 
         using var con = new SqlConnection(connectionString);
-        return await con.ExecuteAsync(sql, new { idTarefa = idTarefa}) > 0;
+        return await con.ExecuteAsync(sql, new { idTarefa = idTarefa }) > 0;
     }
 }
