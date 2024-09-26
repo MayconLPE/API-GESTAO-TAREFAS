@@ -1,4 +1,5 @@
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using API_GESTAO_TAREFAS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -82,6 +83,23 @@ namespace API_GESTAO_TAREFAS.Controllers
                 ? Ok("Tarefa deletada")
                 : BadRequest("Erro ao deletar");
 
+        }
+
+        [HttpGet("BuscarIdTarefaDto")]
+        public async Task<IActionResult> BuscarIdTarefaDto(int idTarefa)
+        {
+            var tarefa = await _service.BuscarTarefaId(idTarefa);
+
+            var tarefaRetono = new TarefaDto
+            {
+                IdTarefa = tarefa.IdTarefa,
+                TituloTarefa = tarefa.TituloTarefa,
+                Descricao = tarefa.Descricao,
+                Status = tarefa.Status
+            };
+            return tarefaRetono != null
+                ? Ok(tarefaRetono)
+                : BadRequest("Tarefa não encontrada");
         }
     }
 

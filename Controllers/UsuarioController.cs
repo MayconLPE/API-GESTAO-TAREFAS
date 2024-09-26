@@ -1,4 +1,5 @@
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using API_GESTAO_TAREFAS.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,22 @@ namespace API_GESTAO_TAREFAS.Controllers
                         ? Ok("Usuario deletado com sucesso")
                         : BadRequest("Erro: Usuario não deletado");
 
+        }
+
+        [HttpGet("ExibirTodosNomesUsuarios")]
+        public async Task<IActionResult> ExibirTodosNomesUsuarios()
+        {
+            var usuarios = await _service.BuscarTodosUsuarios();
+            List<UsuarioDto> usuariosRetorno = new List<UsuarioDto>();
+
+            foreach (var usuario in usuarios)
+            {
+                usuariosRetorno.Add(new UsuarioDto{Nome = usuario.Nome});
+            }
+
+            return usuariosRetorno.Any()
+                ? Ok(usuariosRetorno)
+                : BadRequest("Usuarios não encontrado");
         }
 
     }
