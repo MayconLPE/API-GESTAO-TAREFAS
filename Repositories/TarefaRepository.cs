@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using Dapper;
 
@@ -66,5 +67,12 @@ public class TarefaRepository : ITarefaRepository
 
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, new { idTarefa = idTarefa }) > 0;
+    }
+
+    public async Task<IEnumerable<TarefaDto>> BuscarTodasTarefasDto()
+    {
+        string sql = @"EXEC BuscarTodasTarefas";
+        using var con = new SqlConnection(connectionString);
+        return await con.QueryAsync<TarefaDto>(sql);
     }
 }

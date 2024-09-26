@@ -1,4 +1,5 @@
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using API_GESTAO_TAREFAS.Services.Interfaces;
 
@@ -32,5 +33,10 @@ public class TarefaService : ITarefaService
     public async Task<bool> DeletarTarefa(int idTarefa)
     {
         return await _repository.DeletarTarefa(idTarefa);
+    }
+
+    public async Task<IEnumerable<TarefaDto>> BuscarTodasTarefasDto()
+    {
+        return await _repository.BuscarTodasTarefasDto();
     }
 }

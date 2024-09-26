@@ -62,11 +62,11 @@ namespace API_GESTAO_TAREFAS.Controllers
 
             //  if (tarefa == null) return NotFound("Tarefa não existe");
 
-             var atualizar = await _service.AtualizarTarefa(request, idTarefa);
+            var atualizar = await _service.AtualizarTarefa(request, idTarefa);
 
-             return atualizar
-                 ? Ok("Tarefa atualizada")
-                 : BadRequest("Erro ao atualizar");
+            return atualizar
+                ? Ok("Tarefa atualizada")
+                : BadRequest("Erro ao atualizar");
         }
 
         [HttpDelete("DeletarTarefa")]
@@ -86,7 +86,7 @@ namespace API_GESTAO_TAREFAS.Controllers
         }
 
         [HttpGet("BuscarIdTarefaDto")]
-        public async Task<IActionResult> BuscarIdTarefaDto(int idTarefa)
+        public async Task<IActionResult> BuscarIdTarefasDto(int idTarefa)
         {
             var tarefa = await _service.BuscarTarefaId(idTarefa);
 
@@ -100,6 +100,13 @@ namespace API_GESTAO_TAREFAS.Controllers
             return tarefaRetono != null
                 ? Ok(tarefaRetono)
                 : BadRequest("Tarefa não encontrada");
+        }
+
+        [HttpGet("BuscaTodasTarefasDto")]
+        public async Task<IActionResult> BuscaTodasTarefasDto()
+        {
+            var tarefa = await _service.BuscarTodasTarefasDto();
+            return tarefa.Any() ? Ok(tarefa) : NoContent();
         }
     }
 
