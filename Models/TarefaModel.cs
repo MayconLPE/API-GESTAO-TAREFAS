@@ -12,4 +12,7 @@ public class TarefaModel
     public DateTime DataCriacao { get; set; }
     public DateTime DataConclusao { get; set; }
 
+    public int UsuarioId { get; set; } // chave estrangeira
+    public UsuarioModel Usuario { get; set; }
+
 }

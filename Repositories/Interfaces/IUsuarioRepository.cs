@@ -1,5 +1,6 @@
 
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 
 namespace API_GESTAO_TAREFAS.Repositories.Interfaces;
 
@@ -10,4 +11,5 @@ public interface IUsuarioRepository
     Task<bool> AdicionarUser(UsuarioModel request);
     Task<bool> AtualizarUser(UsuarioModel request, int idUsuario);
     Task<bool> DeletarUser(int idUsuario);
+    Task<bool> InserirTarefaUsuario(int idTarefa, int idUsuario);
 }

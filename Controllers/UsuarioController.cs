@@ -54,7 +54,7 @@ namespace API_GESTAO_TAREFAS.Controllers
         public async Task<IActionResult> AtualizarUsuario(UsuarioModel request, int idUsuario)
         {
             if (idUsuario <= 0) return BadRequest("Usuario inválido");
-            
+
             var usuario = await _service.BuscarUserId(idUsuario);
 
             if (string.IsNullOrEmpty(request.Nome)) request.Nome = usuario.Nome;
@@ -89,13 +89,25 @@ namespace API_GESTAO_TAREFAS.Controllers
 
             foreach (var usuario in usuarios)
             {
-                usuariosRetorno.Add(new UsuarioDto{Nome = usuario.Nome});
+                usuariosRetorno.Add(new UsuarioDto { Nome = usuario.Nome });
             }
 
             return usuariosRetorno.Any()
                 ? Ok(usuariosRetorno)
                 : BadRequest("Usuarios não encontrado");
         }
+
+        [HttpPost("{idUsuario}/AdicionarTarefaAoUsuario")]
+        public async Task<IActionResult> AdicionarTarefaAoUsuario(int idTarefa, int idUsuario)
+        {
+            var inseridoTarefa = await _service.InserirTarefaUsuario(idTarefa, idUsuario);
+
+            return inseridoTarefa
+            ? Ok("Tarefa Inserida com sucesso")
+            : BadRequest("Erro: Tarefa não Inserida");
+
+        }
+
 
     }
 }

@@ -959,11 +959,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\windows\\Desktop\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
+      "projectUniqueName": "C:\\Users\\windows\\Desktop\\DEV\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
       "projectName": "API-GESTAO-TAREFAS",
-      "projectPath": "c:\\Users\\windows\\Desktop\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
+      "projectPath": "C:\\Users\\windows\\Desktop\\DEV\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
       "packagesPath": "C:\\Users\\windows\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\windows\\Desktop\\API-GESTAO-TAREFAS\\obj\\",
+      "outputPath": "C:\\Users\\windows\\Desktop\\DEV\\API-GESTAO-TAREFAS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\windows\\AppData\\Roaming\\NuGet\\NuGet.Config",

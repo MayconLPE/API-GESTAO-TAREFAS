@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using Dapper;
 
@@ -18,9 +19,9 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<IEnumerable<UsuarioModel>> BuscarTodosUsuarios()
     {
-         string sql = @"EXEC SelecionarUsuarios";
-         using var con = new SqlConnection(connectionString);
-         return await con.QueryAsync<UsuarioModel>(sql);
+        string sql = @"EXEC SelecionarUsuarios";
+        using var con = new SqlConnection(connectionString);
+        return await con.QueryAsync<UsuarioModel>(sql);
 
     }
 
@@ -46,7 +47,7 @@ public class UsuarioRepository : IUsuarioRepository
         var parametros = new DynamicParameters();
         parametros.Add("IdUsuario", request.IdUsuario);
         parametros.Add("Nome", request.Nome);
-        
+
         using var con = new SqlConnection(connectionString);
         return await con.ExecuteAsync(sql, parametros) > 0;
     }
@@ -57,6 +58,19 @@ public class UsuarioRepository : IUsuarioRepository
                         WHERE IdUsuario = @IdUsuario;";
 
         using var con = new SqlConnection(connectionString);
-        return await con.ExecuteAsync(sql, new { IdUsuario = idUsuario}) > 0;
+        return await con.ExecuteAsync(sql, new { IdUsuario = idUsuario }) > 0;
+    }
+    
+    public async Task<bool> InserirTarefaUsuario(int idTarefa, int idUsuario)
+    {
+                string sql = @"UPDATE tb_tarefa SET
+	                            IdUsuario = @IdUsuario
+	                            WHERE IdTarefa = @IdTarefa";
+        var parametros = new DynamicParameters();
+        parametros.Add("IdUsuario", idUsuario);
+        parametros.Add("IdTarefa", idTarefa);
+        
+        using var con = new SqlConnection(connectionString);
+        return await con.ExecuteAsync(sql, parametros) > 0;
     }
 }

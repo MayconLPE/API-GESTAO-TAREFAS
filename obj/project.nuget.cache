@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8Ybo85QbVXhlRzVmjijWGzxp6o3UMe5pSErkDtnzUpxo32nZRsqFWa8TLfz/zIMQpD72pgjoZl0zq2GllVLrJQ==",
+  "dgSpecHash": "UFn4xzffT7bbbp5UgJVwIRzrorIv2ln/04Bzywqj8WkP5F3vx/siybeq1lyVK9eWrspLUF11g8Od5lt4kjxeTA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\windows\\Desktop\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
+  "projectFilePath": "C:\\Users\\windows\\Desktop\\DEV\\API-GESTAO-TAREFAS\\API-GESTAO-TAREFAS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\windows\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\windows\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.2\\microsoft.aspnetcore.openapi.8.0.2.nupkg.sha512",

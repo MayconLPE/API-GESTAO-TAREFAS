@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using API_GESTAO_TAREFAS.Models;
+using API_GESTAO_TAREFAS.Models.Dtos;
 using API_GESTAO_TAREFAS.Repositories.Interfaces;
 using API_GESTAO_TAREFAS.Services.Interfaces;
 
@@ -38,4 +39,8 @@ public class UsuarioService : IUsuarioService
         return await _repository.DeletarUser(idUsuario);
     }
 
+    public async Task<bool> InserirTarefaUsuario(int idTarefa, int idUsuario)
+    {
+        return await _repository.InserirTarefaUsuario(idTarefa, idUsuario);
+    }
 }
